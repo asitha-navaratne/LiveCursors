@@ -27,9 +27,18 @@ const handleMessage = function (bytes, uuid) {
   user.state = message;
 
   broadcast();
+  console.log(
+    `${user.username} updated their state: ${JSON.stringify(user.state)}`
+  );
 };
 
-const handleClose = function (uuid) {};
+const handleClose = function (uuid) {
+  console.log(`${users[uuid].username} disconnected`);
+  delete connections[uuid];
+  delete users[uuid];
+
+  broadcast();
+};
 
 wsServer.on("connection", (connection, request) => {
   const { username } = url.parse(request.url, true).query;
