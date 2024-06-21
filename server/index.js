@@ -12,9 +12,21 @@ const port = 8000;
 const connections = {};
 const users = {};
 
+const broadcast = function () {
+  Object.keys(connections).forEach((uuid) => {
+    const connection = connections[uuid];
+    const message = JSON.stringify(users);
+
+    connection.send(message);
+  });
+};
+
 const handleMessage = function (bytes, uuid) {
   const message = JSON.parse(bytes.toString());
-  console.log(message);
+  const user = users[uuid];
+  user.state = message;
+
+  broadcast();
 };
 
 const handleClose = function (uuid) {};
