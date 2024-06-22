@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import usePerfectCursor from "../../hooks/usePerfectCursor";
 
-const Cursor = ({ point }) => {
+const Cursor = ({ point, color }) => {
   const rCursor = useRef(null);
 
   const drawCursor = useCallback((point) => {
@@ -39,11 +39,11 @@ const Cursor = ({ point }) => {
         <path d="m12 24.4219v-16.015l11.591 11.619h-6.781l-.411.124z" />
         <path d="m21.0845 25.0962-3.605 1.535-4.682-11.089 3.686-1.553z" />
       </g>
-      <g fill="black">
+      <g fill="#777">
         <path d="m12 24.4219v-16.015l11.591 11.619h-6.781l-.411.124z" />
         <path d="m21.0845 25.0962-3.605 1.535-4.682-11.089 3.686-1.553z" />
       </g>
-      <g fill={"#6548ee"}>
+      <g fill={color}>
         <path d="m19.751 24.4155-1.844.774-3.1-7.374 1.841-.775z" />
         <path d="m13 10.814v11.188l2.969-2.866.428-.139h4.768z" />
       </g>
@@ -53,6 +53,7 @@ const Cursor = ({ point }) => {
 
 Cursor.propTypes = {
   point: PropTypes.array,
+  color: PropTypes.string,
 };
 
 export default Cursor;

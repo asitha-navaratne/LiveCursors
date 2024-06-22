@@ -1,6 +1,8 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
+import styles from "./Login.module.css";
+
 const Login = ({ onSubmit }) => {
   const [username, setUsername] = useState("");
 
@@ -19,8 +21,9 @@ const Login = ({ onSubmit }) => {
           value={username}
           placeholder="username"
           onChange={(e) => setUsername(e.target.value)}
+          className={styles["username-input"]}
         />
-        <input type="submit" />
+        <input type="submit" className={styles["submit-button"]} />
       </form>
     </>
   );

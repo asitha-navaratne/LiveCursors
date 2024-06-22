@@ -12,6 +12,11 @@ const port = 8000;
 const connections = {};
 const users = {};
 
+const randomHexColorCode = function () {
+  let n = (Math.random() * 0xfffff * 1000000).toString(16);
+  return "#" + n.slice(0, 6);
+};
+
 const broadcast = function () {
   Object.keys(connections).forEach((uuid) => {
     const connection = connections[uuid];
@@ -45,6 +50,7 @@ wsServer.on("connection", (connection, request) => {
   users[uuid] = {
     username: username,
     state: {},
+    color: randomHexColorCode(),
   };
 
   connection.on("message", (message) => handleMessage(message, uuid));
