@@ -4,6 +4,8 @@ const { WebSocketServer } = require("ws");
 const url = require("url");
 const uuidv4 = require("uuid").v4;
 
+const getRandomCursorColor = require("./helpers/getRandomCursorColor");
+
 const server = http.createServer();
 const wsServer = new WebSocketServer({ server });
 
@@ -11,11 +13,6 @@ const port = 8000;
 
 const connections = {};
 const users = {};
-
-const randomHexColorCode = function () {
-  let n = (Math.random() * 0xfffff * 1000000).toString(16);
-  return "#" + n.slice(0, 6);
-};
 
 const broadcast = function () {
   Object.keys(connections).forEach((uuid) => {
@@ -50,7 +47,7 @@ wsServer.on("connection", (connection, request) => {
   users[uuid] = {
     username: username,
     state: {},
-    color: randomHexColorCode(),
+    color: getRandomCursorColor(),
   };
 
   connection.on("message", (message) => handleMessage(message, uuid));

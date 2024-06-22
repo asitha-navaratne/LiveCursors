@@ -1,4 +1,5 @@
 body {
   color: #555;
   font-family: sans-serif;
+  overflow: hidden;
 }
