@@ -1,5 +1,16 @@
+import { useState } from "react";
+
+import Login from "./components/Login";
+import Home from "./views/Home";
+
 function App() {
-  return <div></div>;
+  const [username, setUsername] = useState("");
+
+  return username ? (
+    <Home username={username} />
+  ) : (
+    <Login onSubmit={setUsername} />
+  );
 }
 
 export default App;
