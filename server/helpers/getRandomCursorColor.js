@@ -31,7 +31,10 @@ const cursorColors = [
   "#850F8D",
 ];
 
-module.exports = function () {
-  let index = Math.random() * 30;
+const getRandomCursorColor = function () {
+  let index = Math.floor(Math.random() * 30);
+  console.log(index);
   return cursorColors[index];
 };
+
+module.exports = getRandomCursorColor;
