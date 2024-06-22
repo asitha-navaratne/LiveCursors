@@ -13,6 +13,7 @@ const renderCursors = function (users) {
       <Cursor
         key={uuid}
         point={[user.state.x, user.state.y]}
+        username={user.username}
         color={user.color}
       />
     );

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import usePerfectCursor from "../../hooks/usePerfectCursor";
 
-const Cursor = ({ point, color }) => {
+const Cursor = ({ point, username, color }) => {
   const rCursor = useRef(null);
 
   const drawCursor = useCallback((point) => {
@@ -25,9 +25,9 @@ const Cursor = ({ point, color }) => {
       ref={rCursor}
       style={{
         position: "absolute",
-        top: -15,
-        left: -15,
-        width: 35,
+        top: -10,
+        left: -170,
+        width: 350,
         height: 35,
       }}
       xmlns="http://www.w3.org/2000/svg"
@@ -47,12 +47,16 @@ const Cursor = ({ point, color }) => {
         <path d="m19.751 24.4155-1.844.774-3.1-7.374 1.841-.775z" />
         <path d="m13 10.814v11.188l2.969-2.866.428-.139h4.768z" />
       </g>
+      <text fill="#333" x="25" y="35" fontSize="10">
+        {username}
+      </text>
     </svg>
   );
 };
 
 Cursor.propTypes = {
   point: PropTypes.array,
+  username: PropTypes.string,
   color: PropTypes.string,
 };
 
