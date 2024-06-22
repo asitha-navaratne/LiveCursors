@@ -5,19 +5,21 @@ import throttle from "lodash.throttle";
 
 import Cursor from "../components/Cursor/Cursor";
 
-const renderCursors = function (users) {
-  return Object.keys(users).map((uuid) => {
-    const user = users[uuid];
+const renderCursors = function (users, currentUserId) {
+  return Object.keys(users)
+    .filter((uuid) => uuid !== currentUserId)
+    .map((uuid) => {
+      const user = users[uuid];
 
-    return (
-      <Cursor
-        key={uuid}
-        point={[user.state.x, user.state.y]}
-        username={user.username}
-        color={user.color}
-      />
-    );
-  });
+      return (
+        <Cursor
+          key={uuid}
+          point={[user.state.x, user.state.y]}
+          username={user.username}
+          color={user.color}
+        />
+      );
+    });
 };
 
 const renderUsersList = function (users) {
@@ -30,13 +32,13 @@ const renderUsersList = function (users) {
   );
 };
 
-const Home = ({ username }) => {
+const Home = ({ id, username }) => {
   const WS_URL = "ws://127.0.0.1:8000";
   const THROTTLE = 50;
 
   const { sendJsonMessage, lastJsonMessage } = useWebSocket(WS_URL, {
     share: true,
-    queryParams: { username },
+    queryParams: { id, username },
   });
 
   const sendJsonMessageThrottled = useRef(throttle(sendJsonMessage, THROTTLE));
@@ -58,7 +60,7 @@ const Home = ({ username }) => {
   if (lastJsonMessage) {
     return (
       <>
-        {renderCursors(lastJsonMessage)}
+        {renderCursors(lastJsonMessage, id)}
         {renderUsersList(lastJsonMessage)}
       </>
     );
@@ -68,6 +70,7 @@ const Home = ({ username }) => {
 };
 
 Home.propTypes = {
+  id: PropTypes.string,
   username: PropTypes.string,
 };
 

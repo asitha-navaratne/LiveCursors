@@ -33,7 +33,7 @@ const cursorColors = [
 
 const getRandomCursorColor = function () {
   let index = Math.floor(Math.random() * 30);
-  console.log(index);
+
   return cursorColors[index];
 };
 

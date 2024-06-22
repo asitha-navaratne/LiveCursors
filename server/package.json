@@ -9,7 +9,6 @@
   "author": "asithan",
   "license": "ISC",
   "dependencies": {
-    "uuid": "^10.0.0",
     "ws": "^8.17.0"
   }
 }

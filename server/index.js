@@ -2,7 +2,6 @@ const http = require("http");
 const { WebSocketServer } = require("ws");
 
 const url = require("url");
-const uuidv4 = require("uuid").v4;
 
 const getRandomCursorColor = require("./helpers/getRandomCursorColor");
 
@@ -39,19 +38,19 @@ const handleClose = function (uuid) {
 };
 
 wsServer.on("connection", (connection, request) => {
-  const { username } = url.parse(request.url, true).query;
-  const uuid = uuidv4();
+  const { username, id } = url.parse(request.url, true).query;
 
-  connections[uuid] = connection;
+  connections[id] = connection;
 
-  users[uuid] = {
+  users[id] = {
+    id: id,
     username: username,
-    state: {},
     color: getRandomCursorColor(),
+    state: {},
   };
 
-  connection.on("message", (message) => handleMessage(message, uuid));
-  connection.on("close", () => handleClose(uuid));
+  connection.on("message", (message) => handleMessage(message, id));
+  connection.on("close", () => handleClose(id));
 });
 
 server.listen(port, () => {
