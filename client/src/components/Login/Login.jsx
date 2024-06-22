@@ -6,7 +6,7 @@ const Login = ({ onSubmit }) => {
 
   return (
     <>
-      <h1>Welcome</h1>
+      <h1>Welcome!</h1>
       <p>What should people call you?</p>
       <form
         onSubmit={(e) => {

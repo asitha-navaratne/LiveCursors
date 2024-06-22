@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import useWebSocket from "react-use-websocket";
 import throttle from "lodash.throttle";
 
-import Cursor from "../components/Cursor";
+import Cursor from "../components/Cursor/Cursor";
 
 const renderCursors = function (users) {
   return Object.keys(users).map((uuid) => {
