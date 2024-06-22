@@ -28,6 +28,7 @@ const Home = ({ username }) => {
   const THROTTLE = 50;
 
   const { sendJsonMessage, lastJsonMessage } = useWebSocket(WS_URL, {
+    share: true,
     queryParams: { username },
   });
 

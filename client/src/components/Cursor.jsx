@@ -6,7 +6,7 @@ import usePerfectCursor from "../hooks/usePerfectCursor";
 const Cursor = ({ point }) => {
   const rCursor = useRef(null);
 
-  const animateCursor = useCallback((point) => {
+  const drawCursor = useCallback((point) => {
     const elm = rCursor.current;
     if (!elm) return;
 
@@ -16,7 +16,7 @@ const Cursor = ({ point }) => {
     );
   }, []);
 
-  const onPointMove = usePerfectCursor(animateCursor);
+  const onPointMove = usePerfectCursor(drawCursor);
 
   useLayoutEffect(() => onPointMove(point), [onPointMove, point]);
 
