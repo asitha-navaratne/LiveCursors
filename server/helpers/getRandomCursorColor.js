@@ -31,9 +31,7 @@ const cursorColors = [
   "#850F8D",
 ];
 
-const getRandomCursorColor = function () {
+module.exports = function () {
   let index = Math.random() * 30;
   return cursorColors[index];
 };
-
-export default getRandomCursorColor;
