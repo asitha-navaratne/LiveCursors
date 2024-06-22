@@ -13,6 +13,16 @@ const renderCursors = function (users) {
   });
 };
 
+const renderUsersList = function (users) {
+  return (
+    <ul>
+      {Object.keys(users).map((uuid) => (
+        <li key={uuid}>{JSON.stringify(users[uuid])}</li>
+      ))}
+    </ul>
+  );
+};
+
 const Home = ({ username }) => {
   const WS_URL = "ws://127.0.0.1:8000";
   const THROTTLE = 50;
@@ -38,7 +48,12 @@ const Home = ({ username }) => {
   }, [sendJsonMessage]);
 
   if (lastJsonMessage) {
-    return <>{renderCursors(lastJsonMessage)}</>;
+    return (
+      <>
+        {renderCursors(lastJsonMessage)}
+        {renderUsersList(lastJsonMessage)}
+      </>
+    );
   }
 
   return <h1>Hello {username}</h1>;
