@@ -4,6 +4,9 @@ import useWebSocket from "react-use-websocket";
 import throttle from "lodash.throttle";
 
 import Cursor from "../components/Cursor/Cursor";
+import UserIcon from "../components/UserIcon/UserIcon";
+
+import styles from "./Home.module.css";
 
 const renderCursors = function (users, currentUserId) {
   return Object.keys(users)
@@ -24,11 +27,11 @@ const renderCursors = function (users, currentUserId) {
 
 const renderUsersList = function (users) {
   return (
-    <ul>
+    <div className={styles["user-list"]}>
       {Object.keys(users).map((uuid) => (
-        <li key={uuid}>{JSON.stringify(users[uuid])}</li>
+        <UserIcon key={uuid} user={users[uuid]} />
       ))}
-    </ul>
+    </div>
   );
 };
 

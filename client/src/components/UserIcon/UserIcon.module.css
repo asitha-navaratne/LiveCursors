@@ -1,0 +1,24 @@
+.user-icon-section {
+  margin-left: 5px;
+}
+
+.user-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 20px;
+  padding-bottom: 50%;
+  padding: 10px;
+  border-radius: 100%;
+  font-weight: 700;
+}
+
+.user-icon:hover {
+  cursor: pointer;
+}
+
+.user-details {
+  position: absolute;
+  margin-top: 5px;
+}
